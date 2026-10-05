@@ -20,9 +20,27 @@ npm create json-driven-npm ./src/v13
 # Or using npx:
 npx create-json-driven-npm ./my-api-client
 
-# Or in current directory:
-npm create json-driven-npm .
+# Overwrite existing files in non-empty directories:
+npm create json-driven-npm . --force
 ```
+
+### CLI Options
+
+| Option | Alias | Description |
+| :--- | :--- | :--- |
+| `--force` | `-f` | Bypass safety guard and overwrite existing files |
+| `--help` | `-h` | Display CLI usage instructions |
+| `--version` | `-v` | Display package version |
+
+---
+
+## 🛡️ Built-in Safety Guard
+
+`create-json-driven-npm` includes an active safety guard to protect your code:
+- **Collision Protection**: Refuses to overwrite directories that already contain JSON-driven artifacts (`external-api`, `internal-working`, `source.json`, `index.js`).
+- **Clean Directory Enforcement**: Blocks generation into non-empty directories by default (ignoring standard VCS and project metadata like `.git`, `package.json`, `README.md`, `LICENSE`).
+- **Explicit Override**: Pass `--force` or `-f` to consciously overwrite.
+
 
 ---
 

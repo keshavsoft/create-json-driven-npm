@@ -1,1 +1,3 @@
-export { default } from "./scaffold/index.js";
+import scaffold from "./v2/index.js";
+
+export default scaffold;

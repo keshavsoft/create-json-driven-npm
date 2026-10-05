@@ -10,15 +10,16 @@ create-json-driven-npm
 Scaffold a clean, type-safe, JSON-driven NPM client architecture without directory sprawl.
 
 Usage:
-  npm create json-driven-npm [target-directory]
-  npx create-json-driven-npm [target-directory]
+  npm create json-driven-npm [target-directory] [options]
+  npx create-json-driven-npm [target-directory] [options]
 
 Examples:
   npm create json-driven-npm ./src/v13
   npm create json-driven-npm ./my-api-client
-  npm create json-driven-npm .
+  npm create json-driven-npm . --force
 
 Options:
+  -f, --force      Overwrite existing files if target directory is not empty
   -h, --help       Show this help message
   -v, --version    Show version (${packageInfo.version})
 `;
@@ -35,11 +36,15 @@ if (args.includes("-v") || args.includes("--version")) {
     process.exit(0);
 }
 
+const isForce = args.includes("-f") || args.includes("--force");
 const targetArg = args.find((arg) => !arg.startsWith("-")) || ".";
 const resolvedTarget = path.resolve(process.cwd(), targetArg);
 
 try {
-    const { version, copied } = scaffold({ inTargetDir: resolvedTarget });
+    const { version, copied } = scaffold({
+        inTargetDir: resolvedTarget,
+        inForce: isForce
+    });
     const displayTarget = path.relative(process.cwd(), resolvedTarget) || ".";
 
     console.log(`
@@ -66,6 +71,6 @@ try {
 =============================================================
 `);
 } catch (error) {
-    console.error(`\n❌ Error scaffolding architecture: ${error.message}\n`);
+    console.error(`\n❌ Error: ${error.message}\n`);
     process.exit(1);
 }
