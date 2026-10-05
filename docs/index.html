@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>create-json-driven-npm - Scaffolding Documentation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="badge">Official Scaffolder</div>
+    <h1>create-json-driven-npm</h1>
+    <p>Instantly bootstrap clean, type-safe, JSON-driven NPM client architectures without directory sprawl.</p>
+  </header>
+
+  <main>
+    <div class="cli-box">
+      $ npm create json-driven-npm ./src/v13
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>📁 external-api/</h3>
+        <p>Contains <code>api.json</code> (public route allowlist) and <code>api.js</code> (public client facade). Defines the boundary between public API consumers and internal machinery.</p>
+      </div>
+
+      <div class="card">
+        <h3>📁 internal-working/</h3>
+        <p>Houses the <code>route/</code> assembly engine (mounting dot-paths in memory) and the <code>execution/</code> pipeline (where your actual fetch/query logic lives).</p>
+      </div>
+
+      <div class="card">
+        <h3>📄 source.json</h3>
+        <p>Pure domain specification. Contains endpoint actions, resources, and query metadata. Completely decoupled from transport protocols.</p>
+      </div>
+
+      <div class="card">
+        <h3>📄 index.js</h3>
+        <p>Strictly single default export re-exporting the client facade with zero namespace collisions.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🎯 The 1-Place Customization Rule</h3>
+      <p>When you scaffold with <code>create-json-driven-npm</code>, you never need to build directory trees. There is only ONE file where custom code is written:</p>
+      <pre>internal-working/execution/index.js</pre>
+      <p>All route parsing, tree nesting, allowlist validation, and public facade bindings are handled automatically by the pre-wired engine.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Released under the MIT License • Companion to <a href="https://github.com/keshavsoft/json-driven-npm" style="color: var(--accent-cyan); text-decoration: none;">json-driven-npm</a></p>
+  </footer>
+</body>
+</html>

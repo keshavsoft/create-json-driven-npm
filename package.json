@@ -1,0 +1,35 @@
+{
+    "name": "create-json-driven-npm",
+    "version": "1.0.2",
+    "description": "Scaffolding tool to bootstrap clean, type-safe, JSON-driven NPM clients and SDKs without folder sprawl.",
+    "type": "module",
+    "bin": {
+        "create-json-driven-npm": "./bin/create-json-driven-npm.js"
+    },
+    "main": "./src/index.js",
+    "files": [
+        "bin",
+        "src",
+        "docs",
+        "README.md",
+        "LICENSE"
+    ],
+    "dependencies": {
+        "json-driven-npm": "^1.2.1"
+    },
+    "scripts": {
+        "test": "node --test test/test.js"
+    },
+    "keywords": [
+        "create",
+        "scaffold",
+        "generator",
+        "json-driven",
+        "api-client",
+        "sdk"
+    ],
+    "license": "MIT",
+    "engines": {
+        "node": ">=20.10"
+    }
+}
