@@ -3,6 +3,7 @@ import path from "node:path";
 
 const CORE_ITEMS = [
     "api.json",
+    "engine",
     "external-api",
     "internal-working",
     "source.json",

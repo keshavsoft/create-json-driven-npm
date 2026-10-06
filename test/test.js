@@ -17,15 +17,15 @@ test("scaffolds modern JSON-driven v3 architecture and executes cleanly", async 
 
     const { version, copied } = scaffold({ inTargetDir: tempDir });
 
-    assert.equal(version, "v3");
+    assert.equal(version, "v4");
     assert.ok(copied.includes("api.json"));
-    assert.ok(copied.includes("internal-working"));
+    assert.ok(copied.includes("engine"));
     assert.ok(copied.includes("source.json"));
     assert.ok(copied.includes("index.js"));
 
     assert.ok(fs.existsSync(path.join(tempDir, "api.json")));
-    assert.ok(fs.existsSync(path.join(tempDir, "internal-working", "route", "index.js")));
-    assert.ok(fs.existsSync(path.join(tempDir, "internal-working", "execution", "index.js")));
+    assert.ok(fs.existsSync(path.join(tempDir, "engine", "route", "index.js")));
+    assert.ok(fs.existsSync(path.join(tempDir, "engine", "execution", "index.js")));
     assert.ok(fs.existsSync(path.join(tempDir, "source.json")));
     assert.ok(fs.existsSync(path.join(tempDir, "index.js")));
 
@@ -35,7 +35,7 @@ test("scaffolds modern JSON-driven v3 architecture and executes cleanly", async 
     assert.equal(typeof app.founder.profile.fetch, "function");
     assert.equal(typeof app.founder.links.fetch, "function");
     assert.equal(typeof app.company.info.fetch, "function");
-    assert.equal(typeof app.ecosystem.packages.fetch, "function");
+    assert.equal(typeof app.ecosystem.tools.blueprint.fetch, "function");
 
     const profile = await app.founder.profile.fetch();
     assert.equal(profile.name, "Keshav Nalam");
@@ -44,7 +44,7 @@ test("scaffolds modern JSON-driven v3 architecture and executes cleanly", async 
     const links = await app.founder.links.fetch();
     assert.equal(links.website, "https://keshavsoft.com/");
 
-    const packages = await app.ecosystem.packages.fetch();
+    const packages = await app.company.packages.fetch();
     assert.ok(Array.isArray(packages));
     assert.ok(packages.some((p) => p.name === "create-intellisense"));
 });
