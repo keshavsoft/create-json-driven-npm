@@ -14,7 +14,7 @@ Usage:
   npx create-json-driven-npm [target-directory] [options]
 
 Examples:
-  npm create json-driven-npm ./src/v13
+  npm create json-driven-npm ./src/v4
   npm create json-driven-npm ./my-api-client
   npm create json-driven-npm . --force
 
@@ -56,16 +56,20 @@ try {
 ✨ Scaffolded successfully into: ${displayTarget}
 📦 Source Architecture: json-driven-npm (${version})
 
-📁 Scaffolded Architecture (2 Folders & 2 Files):
-   ├── external-api/     (api.json & api.js - public routing contract)
-   ├── internal-working/ (route/ & execution/ - mounting & dispatch engines)
-   ├── source.json       (domain endpoint metadata)
-   └── index.js          (public entry point)
+📁 Scaffolded Architecture:`);
 
+    for (const item of copied) {
+        console.log(`   ├── ${item}`);
+    }
+
+    const apiPath = copied.includes("api.json") ? "api.json" : path.join("external-api", "api.json");
+
+    console.log(`
 👉 Next Steps:
-   1. Define your public routes in ${path.join(displayTarget, "external-api", "api.json")}
+   1. Define your public routes in ${path.join(displayTarget, apiPath)}
    2. Specify your endpoint metadata in ${path.join(displayTarget, "source.json")}
    3. Write your query/fetch logic in ${path.join(displayTarget, "internal-working", "execution", "index.js")}
+   4. Run 'create-intellisense' to generate TypeScript declarations (index.d.ts)!
 
 💡 All route trees are automatically mounted in memory at startup!
 =============================================================
